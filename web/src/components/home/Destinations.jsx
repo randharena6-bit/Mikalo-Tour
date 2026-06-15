@@ -5,42 +5,42 @@ const destinations = [
     name: 'Nosy Be',
     tag: 'Île paradisiaque',
     description: 'Plages de sable blanc, eaux turquoise, ylang-ylang',
-    color: 'from-blue-400 to-cyan-500',
+    image: '/images/NosyBe.jpeg',
     gradient: 'from-blue-500/80 to-cyan-600/80',
   },
   {
     name: 'Tsingy de Bemaraha',
     tag: 'Patrimoine UNESCO',
     description: 'Formations calcaires uniques, canyon et lémuriens',
-    color: 'from-amber-400 to-orange-500',
+    image: '/images/Tsingy.jpeg',
     gradient: 'from-amber-600/80 to-orange-700/80',
   },
   {
     name: 'Sainte-Marie',
     tag: 'Île aux baleines',
     description: 'Observation des baleines, plages sauvages, histoire pirate',
-    color: 'from-emerald-400 to-teal-500',
+    image: '/images/7.jpeg',
     gradient: 'from-emerald-600/80 to-teal-700/80',
   },
   {
     name: 'Antananarivo',
     tag: 'Capitale',
     description: 'Collines, palais royaux, artisanat et gastronomie',
-    color: 'from-rose-400 to-pink-500',
+    image: '/images/Tana.jpg',
     gradient: 'from-rose-600/80 to-pink-700/80',
   },
   {
     name: 'Ifaty',
     tag: 'Plage & Récif',
     description: 'Plongée sous-marine, baobabs, lagons protégés',
-    color: 'from-sky-400 to-indigo-500',
+    image: '/images/Ifaty.jpeg',
     gradient: 'from-sky-600/80 to-indigo-700/80',
   },
   {
     name: 'Ranomafana',
     tag: 'Parc national',
     description: 'Forêt tropicale, cascades, lémuriens dorés',
-    color: 'from-lime-400 to-green-500',
+    image: '/images/Ranomafana.jpeg',
     gradient: 'from-lime-600/80 to-green-700/80',
   },
 ]
@@ -61,9 +61,8 @@ export default function Destinations() {
               key={index}
               className="group relative h-80 rounded-2xl overflow-hidden cursor-pointer"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${dest.color} opacity-90 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style={{ backgroundImage: `url(${dest.image})` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
               <div className={`absolute inset-0 bg-gradient-to-br ${dest.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
               <div className="absolute top-4 left-4">
