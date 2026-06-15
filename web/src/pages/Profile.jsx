@@ -20,14 +20,22 @@ export default function Profile() {
     setMessage({ type: '', text: '' })
 
     try {
-      const fd = new FormData()
-      fd.append('name', form.name)
-      fd.append('phone', form.phone)
-      fd.append('bio', form.bio)
-      if (avatar) fd.append('avatar', avatar)
-
-      await authService.updateProfile(fd)
+      if (avatar) {
+        const fd = new FormData()
+        fd.append('name', form.name)
+        fd.append('phone', form.phone)
+        fd.append('bio', form.bio)
+        fd.append('avatar', avatar)
+        await authService.updateProfile(fd)
+      } else {
+        await authService.updateProfile({
+          name: form.name,
+          phone: form.phone,
+          bio: form.bio,
+        })
+      }
       await refreshUser()
+      setAvatar(null)
       setMessage({ type: 'success', text: 'Profil mis à jour avec succès' })
     } catch (err) {
       setMessage({ type: 'error', text: err.response?.data?.message || 'Erreur lors de la mise à jour' })

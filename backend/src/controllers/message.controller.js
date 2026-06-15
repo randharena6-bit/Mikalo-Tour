@@ -79,8 +79,9 @@ exports.sendMessage = async (req, res, next) => {
     }
 
     if (req.file) {
+      const { getFileUrl } = require('../middleware/upload')
       messageData.type = req.file.mimetype.startsWith('image/') ? 'image' : 'document'
-      messageData.fileUrl = req.file.path
+      messageData.fileUrl = getFileUrl(req)
     }
 
     if (req.body.type === 'location') {

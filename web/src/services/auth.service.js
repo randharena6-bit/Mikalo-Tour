@@ -5,8 +5,6 @@ export const authService = {
   login: (data) => api.post('/auth/login', data),
   socialAuth: (data) => api.post('/auth/social', data),
   me: () => api.get('/auth/me'),
-  updateProfile: (data) => api.put('/auth/profile', data, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  }),
+  updateProfile: (data) => api.put('/auth/profile', data),
   getUser: (id) => api.get(`/auth/${id}`),
 }

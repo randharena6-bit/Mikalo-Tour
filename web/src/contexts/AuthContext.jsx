@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
 
   const refreshUser = useCallback(async () => {
     const res = await authService.me()
-    setUser(res.data.data)
+    setUser(res.data.data.user)
   }, [])
 
   return (

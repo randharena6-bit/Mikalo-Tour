@@ -37,13 +37,18 @@ exports.me = async (req, res) => {
 
 exports.updateProfile = async (req, res, next) => {
   try {
+    const { getFileUrl } = require('../middleware/upload')
     const updates = {}
-    const allowed = ['name', 'firstName', 'phone', 'bio', 'avatar', 'languages', 'preferences']
+    const allowed = ['name', 'firstName', 'phone', 'bio', 'languages', 'preferences']
     allowed.forEach(field => {
       if (req.body[field] !== undefined) updates[field] = req.body[field]
     })
-    if (req.file) updates.avatar = req.file.path
+    const avatarUrl = getFileUrl(req)
+    if (avatarUrl) updates.avatar = avatarUrl
 
+    if (Object.keys(updates).length === 0) {
+      return ApiResponse.badRequest(res, 'Aucune information à mettre à jour')
+    }
     await req.user.update(updates)
     ApiResponse.success(res, { user: req.user }, 'Profil mis à jour')
   } catch (error) {
