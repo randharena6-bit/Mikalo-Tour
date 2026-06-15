@@ -1,20 +1,18 @@
 export default function SectionTitle({ subtitle, title, description, light = false }) {
   return (
-    <div className="text-center max-w-3xl mx-auto mb-16">
+    <div className="text-center max-w-2xl mx-auto mb-12">
       {subtitle && (
-        <span className="inline-block text-sm font-semibold uppercase tracking-widest text-primary-500 mb-3">
+        <p className={`text-sm uppercase tracking-widest font-semibold mb-3 ${light ? 'text-primary-300' : 'text-primary-500'}`}>
           {subtitle}
-        </span>
+        </p>
       )}
-      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 ${
-        light ? 'text-white' : 'text-gray-900'
-      }`}>
-        {title}
-      </h2>
+      {title && (
+        <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold ${light ? 'text-white' : 'text-gray-900'}`}>
+          {title}
+        </h2>
+      )}
       {description && (
-        <p className={`text-lg leading-relaxed ${
-          light ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+        <p className={`mt-4 text-lg ${light ? 'text-gray-300' : 'text-gray-600'}`}>
           {description}
         </p>
       )}
