@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, Navigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Register() {
@@ -38,17 +39,34 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-primary-900 to-gray-900 flex">
-      <div className="hidden lg:block flex-1 animate-fade-in-scale">
-        <div
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -20, scale: 0.97 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-primary-900 to-gray-900 flex"
+    >
+      <Link
+        to="/"
+        className="fixed top-6 left-6 z-10 flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/20 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-200"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        Accueil
+      </Link>
+      <div className="hidden lg:block flex-1">
+        <motion.div
+          initial={{ opacity: 0, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
           className="h-full bg-cover bg-center"
           style={{ backgroundImage: 'url(/images/register.jpeg)' }}
         >
           <div className="h-full w-full bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
-        </div>
+        </motion.div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center px-6 lg:px-16 py-12 animate-fade-in-up">
+      <div className="flex-1 flex items-center justify-center px-6 lg:px-16 py-12">
         <div className="w-full max-w-lg">
           <Link to="/" className="inline-flex items-center gap-2 mb-8">
             <div className="w-11 h-11 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
@@ -147,7 +165,7 @@ export default function Register() {
             </Link>
           </p>
         </div>
-      </div>
-    </div>
+        </div>
+    </motion.div>
   )
 }
