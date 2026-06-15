@@ -29,10 +29,10 @@ export default function Register() {
     }
     setLoading(true)
     try {
-      await signup(form.name, form.email, form.password)
+      await signup({ name: form.name, email: form.email, password: form.password })
       navigate('/')
-    } catch {
-      setError('Une erreur est survenue lors de l\'inscription')
+    } catch (err) {
+      setError(err.response?.data?.message || 'Une erreur est survenue lors de l\'inscription')
     } finally {
       setLoading(false)
     }
