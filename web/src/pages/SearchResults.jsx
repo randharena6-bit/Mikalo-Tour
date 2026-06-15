@@ -3,7 +3,6 @@ import { useSearchParams, Link } from 'react-router-dom'
 import { searchService } from '../services/search.service'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import StarRating from '../components/common/StarRating'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function SearchResults() {
@@ -28,8 +27,6 @@ export default function SearchResults() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-3xl font-bold mb-6">Recherche</h1>

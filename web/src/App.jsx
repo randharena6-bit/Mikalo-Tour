@@ -34,29 +34,30 @@ function AnimatedRoutes() {
     <>
       {!hideHeader && <Header />}
       <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/marketplace" element={<Marketplace />} />
-        <Route path="/search" element={<SearchResults />} />
-        <Route path="/guides/:id" element={<GuideProfile />} />
-        <Route path="/agencies/:id" element={<AgencyProfile />} />
-        <Route path="/circuits/:id" element={<CircuitDetail />} />
-        <Route path="/activities/:id" element={<ActivityDetail />} />
-        <Route path="/dashboard" element={<ProtectedRoute roles={['tourist']}><DashboardTourist /></ProtectedRoute>} />
-        <Route path="/dashboard/guide" element={<ProtectedRoute roles={['guide']}><DashboardGuide /></ProtectedRoute>} />
-        <Route path="/dashboard/agency" element={<ProtectedRoute roles={['agency']}><DashboardAgency /></ProtectedRoute>} />
-        <Route path="/dashboard/admin" element={<ProtectedRoute roles={['admin']}><DashboardAdmin /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/bookings" element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
-        <Route path="/bookings/:id" element={<ProtectedRoute><BookingDetail /></ProtectedRoute>} />
-        <Route path="/book/:type/:id" element={<ProtectedRoute><BookNow /></ProtectedRoute>} />
-        <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
-        <Route path="/messages/:id" element={<ProtectedRoute><Conversation /></ProtectedRoute>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/guides/:id" element={<GuideProfile />} />
+          <Route path="/agencies/:id" element={<AgencyProfile />} />
+          <Route path="/circuits/:id" element={<CircuitDetail />} />
+          <Route path="/activities/:id" element={<ActivityDetail />} />
+          <Route path="/dashboard" element={<ProtectedRoute roles={['tourist']}><DashboardTourist /></ProtectedRoute>} />
+          <Route path="/dashboard/guide" element={<ProtectedRoute roles={['guide']}><DashboardGuide /></ProtectedRoute>} />
+          <Route path="/dashboard/agency" element={<ProtectedRoute roles={['agency']}><DashboardAgency /></ProtectedRoute>} />
+          <Route path="/dashboard/admin" element={<ProtectedRoute roles={['admin']}><DashboardAdmin /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/bookings" element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
+          <Route path="/bookings/:id" element={<ProtectedRoute><BookingDetail /></ProtectedRoute>} />
+          <Route path="/book/:type/:id" element={<ProtectedRoute><BookNow /></ProtectedRoute>} />
+          <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+          <Route path="/messages/:id" element={<ProtectedRoute><Conversation /></ProtectedRoute>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   )
 }
 

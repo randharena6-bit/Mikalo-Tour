@@ -7,7 +7,6 @@ import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
 import StarRating from '../components/common/StarRating'
 import ReviewCard from '../components/common/ReviewCard'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function AgencyProfile() {
@@ -37,8 +36,6 @@ export default function AgencyProfile() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <section className="relative bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900 pt-24 pb-32">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center md:items-end gap-6 -mb-24 relative z-10">

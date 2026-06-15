@@ -1,4 +1,3 @@
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 import Hero from '../components/home/Hero'
 import Features from '../components/home/Features'
@@ -13,7 +12,6 @@ import CTA from '../components/home/CTA'
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <Stats />

@@ -4,7 +4,6 @@ import { marketplaceService } from '../services/marketplace.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function ActivityDetail() {
@@ -27,8 +26,6 @@ export default function ActivityDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="relative h-64 md:h-96 bg-gradient-to-br from-secondary-600 to-secondary-900">
         {activity.images?.[0] && (
           <img src={activity.images[0]} alt={activity.title} className="w-full h-full object-cover" />

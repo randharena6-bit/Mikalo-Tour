@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { messageService } from '../services/message.service'
 import { useSocket } from '../contexts/SocketContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function Messages() {
@@ -49,8 +48,6 @@ export default function Messages() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="text-3xl font-bold">Messages</h1>

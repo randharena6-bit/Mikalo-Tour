@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { authService } from '../services/auth.service'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function Profile() {
@@ -39,8 +38,6 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-3xl font-bold">Mon profil</h1>

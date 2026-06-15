@@ -4,7 +4,6 @@ import { bookingService } from '../services/booking.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 const STATUS_CONFIG = {
@@ -66,8 +65,6 @@ export default function BookingDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-2">

@@ -4,7 +4,6 @@ import { marketplaceService } from '../services/marketplace.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function CircuitDetail() {
@@ -27,8 +26,6 @@ export default function CircuitDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="relative h-64 md:h-96 bg-gradient-to-br from-primary-600 to-primary-900">
         {circuit.images?.[0] && (
           <img src={circuit.images[0]} alt={circuit.title} className="w-full h-full object-cover" />

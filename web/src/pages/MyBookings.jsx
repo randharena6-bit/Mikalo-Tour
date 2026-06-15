@@ -4,7 +4,6 @@ import { bookingService } from '../services/booking.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import EmptyState from '../components/common/EmptyState'
-import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 const STATUS_COLORS = {
@@ -47,8 +46,6 @@ export default function MyBookings() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-
       <div className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="text-3xl font-bold">Mes réservations</h1>
