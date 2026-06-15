@@ -11,7 +11,7 @@ function initSocket(server) {
   })
 
   const jwt = require('jsonwebtoken')
-  const { User } = require('./models')
+  const { User } = require('../models')
 
   io.use(async (socket, next) => {
     try {
@@ -51,7 +51,7 @@ function initSocket(server) {
     })
 
     socket.on('send_message', async (data) => {
-      const { Conversation, Message } = require('./models')
+      const { Conversation, Message } = require('../models')
       const conversation = await Conversation.findByPk(data.conversationId)
       if (!conversation) return
 

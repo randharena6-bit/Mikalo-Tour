@@ -31,7 +31,7 @@ async function start() {
     await sequelize.authenticate()
     console.log('[DB] PostgreSQL connecté')
 
-    await sequelize.sync({ alter: true })
+    await sequelize.sync()
     console.log('[DB] Modèles synchronisés')
 
     await seedAdmin()
