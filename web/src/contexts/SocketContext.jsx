@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import { io } from 'socket.io-client'
 import { useAuth } from './AuthContext'
 
@@ -7,11 +7,13 @@ const SocketContext = createContext(null)
 export function SocketProvider({ children }) {
   const { user } = useAuth()
   const [socket, setSocket] = useState(null)
+  const socketRef = useRef(null)
 
   useEffect(() => {
     if (!user) {
-      if (socket) {
-        socket.disconnect()
+      if (socketRef.current) {
+        socketRef.current.disconnect()
+        socketRef.current = null
         Promise.resolve().then(() => setSocket(null))
       }
       return
@@ -25,7 +27,8 @@ export function SocketProvider({ children }) {
     s.on('connect', () => console.log('[Socket] Connecté'))
     s.on('connect_error', (err) => console.error('[Socket] Erreur:', err.message))
 
-    setSocket(s)
+    socketRef.current = s
+    Promise.resolve().then(() => setSocket(s))
 
     return () => {
       s.disconnect()
@@ -39,6 +42,7 @@ export function SocketProvider({ children }) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSocket() {
   return useContext(SocketContext)
 }

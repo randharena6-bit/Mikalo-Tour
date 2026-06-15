@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { messageService } from '../services/message.service'
-import { useAuth } from '../contexts/AuthContext'
 import { useSocket } from '../contexts/SocketContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import Header from '../components/common/Header'
@@ -40,19 +39,12 @@ export default function Messages() {
     return () => socket.off('notification', handler)
   }, [socket])
 
-  const createConversation = async () => {
+  useEffect(() => {
     const userId = searchParams.get('userId')
     if (!userId) return
-    try {
-      const res = await messageService.createConversation({ participantIds: [parseInt(userId)] })
-      window.location.href = `/messages/${res.data.data.id}`
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  useEffect(() => {
-    if (searchParams.get('userId')) createConversation()
+    messageService.createConversation({ participantIds: [parseInt(userId)] })
+      .then((res) => { window.location.href = `/messages/${res.data.data.id}` })
+      .catch((err) => console.error(err))
   }, [searchParams])
 
   return (

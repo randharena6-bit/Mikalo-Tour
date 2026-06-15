@@ -10,6 +10,7 @@ export default function Conversation() {
   const { user } = useAuth()
   const socket = useSocket()
   const [messages, setMessages] = useState([])
+  const [conversation] = useState(null)
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState('')
   const [sending, setSending] = useState(false)
