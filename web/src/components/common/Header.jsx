@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 
 const navLinks = [
   { label: 'Accueil', href: '#hero' },
@@ -9,8 +11,15 @@ const navLinks = [
 ]
 
 export default function Header() {
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -50,12 +59,26 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <button className="text-sm font-medium text-gray-700 hover:text-primary-500 transition-colors px-4 py-2">
-              Connexion
-            </button>
-            <button className="text-sm font-semibold bg-gradient-to-r from-primary-500 to-primary-700 text-white px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300">
-              S&apos;inscrire
-            </button>
+            {user ? (
+              <>
+                <span className="text-sm font-medium text-gray-700">{user.name}</span>
+                <button
+                  onClick={handleLogout}
+                  className="text-sm font-medium text-gray-700 hover:text-red-500 transition-colors px-4 py-2"
+                >
+                  Déconnexion
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-primary-500 transition-colors px-4 py-2">
+                  Connexion
+                </Link>
+                <Link to="/register" className="text-sm font-semibold bg-gradient-to-r from-primary-500 to-primary-700 text-white px-6 py-2.5 rounded-full hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300">
+                  S&apos;inscrire
+                </Link>
+              </>
+            )}
           </div>
 
           <button
@@ -88,12 +111,26 @@ export default function Header() {
               </a>
             ))}
             <hr className="border-gray-100 my-3" />
-            <button className="w-full text-center text-gray-700 font-medium py-2 hover:text-primary-500">
-              Connexion
-            </button>
-            <button className="w-full text-center bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold py-3 rounded-full">
-              S&apos;inscrire
-            </button>
+            {user ? (
+              <>
+                <div className="text-gray-700 font-medium py-2 text-center">{user.name}</div>
+                <button
+                  onClick={() => { handleLogout(); setMenuOpen(false) }}
+                  className="w-full text-center text-red-500 font-medium py-2 hover:text-red-600"
+                >
+                  Déconnexion
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="block w-full text-center text-gray-700 font-medium py-2 hover:text-primary-500" onClick={() => setMenuOpen(false)}>
+                  Connexion
+                </Link>
+                <Link to="/register" className="block w-full text-center bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold py-3 rounded-full" onClick={() => setMenuOpen(false)}>
+                  S&apos;inscrire
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
