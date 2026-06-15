@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { bookingService } from '../services/booking.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
@@ -20,7 +20,6 @@ const STATUS_ORDER = ['pending', 'confirmed', 'in_progress', 'completed']
 
 export default function BookingDetail() {
   const { id } = useParams()
-  const navigate = useNavigate()
   const { user } = useAuth()
   const [booking, setBooking] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -28,7 +27,6 @@ export default function BookingDetail() {
   const [cancelling, setCancelling] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
     bookingService.getById(id)
       .then((res) => setBooking(res.data.data))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger la réservation'))

@@ -19,7 +19,6 @@ export default function AgencyProfile() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
     Promise.all([
       agencyService.getById(id),
       reviewService.list({ targetType: 'agency', targetId: id, limit: 10 }),

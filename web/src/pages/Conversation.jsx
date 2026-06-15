@@ -10,7 +10,6 @@ export default function Conversation() {
   const { user } = useAuth()
   const socket = useSocket()
   const [messages, setMessages] = useState([])
-  const [conversation, setConversation] = useState(null)
   const [loading, setLoading] = useState(true)
   const [content, setContent] = useState('')
   const [sending, setSending] = useState(false)
@@ -18,12 +17,11 @@ export default function Conversation() {
   const bottomRef = useRef(null)
 
   useEffect(() => {
-    setLoading(true)
     Promise.all([
       messageService.getConversationMessages(id),
       messageService.markAsRead(id),
     ])
-      .then(([msgRes, convRes]) => {
+      .then(([msgRes]) => {
         setMessages(msgRes.data.data || [])
       })
       .catch(() => {})

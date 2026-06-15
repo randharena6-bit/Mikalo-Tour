@@ -20,7 +20,6 @@ export default function Marketplace() {
   const [search, setSearch] = useState('')
 
   useEffect(() => {
-    setLoading(true)
     const params = search ? { search } : {}
 
     const fetchers = {

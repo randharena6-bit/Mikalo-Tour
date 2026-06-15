@@ -4,7 +4,6 @@ import { marketplaceService } from '../services/marketplace.service'
 import { useAuth } from '../contexts/AuthContext'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
-import StarRating from '../components/common/StarRating'
 import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
@@ -16,7 +15,6 @@ export default function CircuitDetail() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
     marketplaceService.getCircuit(id)
       .then((res) => setCircuit(res.data.data))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger le circuit'))

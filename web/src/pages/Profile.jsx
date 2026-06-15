@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { authService } from '../services/auth.service'
-import LoadingSpinner from '../components/common/LoadingSpinner'
 import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function Profile() {
   const { user, refreshUser } = useAuth()
-  const navigate = useNavigate()
   const [form, setForm] = useState({
     name: user?.name || '',
     phone: user?.phone || '',

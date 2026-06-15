@@ -10,8 +10,10 @@ export function SocketProvider({ children }) {
 
   useEffect(() => {
     if (!user) {
-      if (socket) socket.disconnect()
-      setSocket(null)
+      if (socket) {
+        socket.disconnect()
+        Promise.resolve().then(() => setSocket(null))
+      }
       return
     }
 
@@ -25,7 +27,9 @@ export function SocketProvider({ children }) {
 
     setSocket(s)
 
-    return () => s.disconnect()
+    return () => {
+      s.disconnect()
+    }
   }, [user])
 
   return (

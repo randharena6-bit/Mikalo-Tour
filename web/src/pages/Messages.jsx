@@ -8,7 +8,6 @@ import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 
 export default function Messages() {
-  const { user } = useAuth()
   const socket = useSocket()
   const [searchParams] = useSearchParams()
   const [conversations, setConversations] = useState([])

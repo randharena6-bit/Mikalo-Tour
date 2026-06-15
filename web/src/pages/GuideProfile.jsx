@@ -19,8 +19,6 @@ export default function GuideProfile() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
-    setError('')
     Promise.all([
       guideService.getById(id),
       reviewService.list({ targetType: 'guide', targetId: id, limit: 10 }),

@@ -15,7 +15,6 @@ export default function ActivityDetail() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
     marketplaceService.getActivity(id)
       .then((res) => setActivity(res.data.data))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger l\'activité'))

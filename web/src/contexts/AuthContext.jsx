@@ -9,14 +9,12 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('mikalo_token')
-    if (token) {
-      authService.me()
-        .then((res) => setUser(res.data.data))
-        .catch(() => localStorage.removeItem('mikalo_token'))
-        .finally(() => setLoading(false))
-    } else {
-      setLoading(false)
-    }
+    ;(token
+      ? authService.me()
+          .then((res) => setUser(res.data.data))
+          .catch(() => localStorage.removeItem('mikalo_token'))
+      : Promise.resolve()
+    ).finally(() => setLoading(false))
   }, [])
 
   const login = useCallback(async (email, password) => {

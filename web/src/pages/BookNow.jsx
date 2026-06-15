@@ -25,7 +25,6 @@ const DURATION_UNITS = [
 export default function BookNow() {
   const { type, id } = useParams()
   const navigate = useNavigate()
-  const { user } = useAuth()
   const [entity, setEntity] = useState(null)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
@@ -41,7 +40,6 @@ export default function BookNow() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setLoading(true)
     const fetchers = {
       guide: () => guideService.getById(id),
       agency: () => agencyService.getById(id),

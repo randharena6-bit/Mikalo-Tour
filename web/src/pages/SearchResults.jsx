@@ -15,7 +15,6 @@ export default function SearchResults() {
 
   useEffect(() => {
     if (!query) return
-    setLoading(true)
     searchService.all({ q: query })
       .then((res) => setResults(res.data.data))
       .catch(() => setResults(null))
