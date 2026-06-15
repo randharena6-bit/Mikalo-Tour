@@ -48,9 +48,9 @@ export default function BookNow() {
 
     fetchers[type]?.()
       .then((res) => {
-        const data = res.data.data
-        setEntity(data)
-        const rate = data.hourlyRate || data.dailyRate || data.price || 0
+        const entityData = res.data.data?.[type]
+        setEntity(entityData)
+        const rate = entityData?.hourlyRate || entityData?.dailyRate || entityData?.price || 0
         setForm((prev) => ({ ...prev, totalAmount: rate }))
       })
       .catch(() => setError('Impossible de charger les informations'))

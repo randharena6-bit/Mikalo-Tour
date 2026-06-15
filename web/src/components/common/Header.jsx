@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 
 const navLinks = [
@@ -22,6 +22,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  const location = useLocation()
+
   const handleLogout = () => {
     logout()
     navigate('/')
@@ -33,7 +35,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isHome = window.location.pathname === '/'
+  const isHome = location.pathname === '/'
 
   return (
     <header

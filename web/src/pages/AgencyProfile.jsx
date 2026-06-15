@@ -24,8 +24,8 @@ export default function AgencyProfile() {
       reviewService.list({ targetType: 'agency', targetId: id, limit: 10 }),
     ])
       .then(([agencyRes, reviewRes]) => {
-        setAgency(agencyRes.data.data)
-        setReviews(reviewRes.data.data || [])
+        setAgency(agencyRes.data.data.agency)
+        setReviews(reviewRes.data.data?.reviews || [])
       })
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger le profil'))
       .finally(() => setLoading(false))

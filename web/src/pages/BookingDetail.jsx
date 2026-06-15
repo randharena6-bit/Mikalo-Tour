@@ -28,7 +28,7 @@ export default function BookingDetail() {
 
   useEffect(() => {
     bookingService.getById(id)
-      .then((res) => setBooking(res.data.data))
+      .then((res) => setBooking(res.data.data.booking))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger la réservation'))
       .finally(() => setLoading(false))
   }, [id])

@@ -38,7 +38,7 @@ export default function MyBookings() {
         : bookingService.getMyBookings
 
     fetcher({ limit: 50 })
-      .then((res) => setBookings(res.data.data || []))
+      .then((res) => setBookings(res.data.data?.bookings || []))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [user?.role])

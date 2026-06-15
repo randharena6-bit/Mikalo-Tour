@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem('mikalo_token')
     ;(token
       ? authService.me()
-          .then((res) => setUser(res.data.data))
+          .then((res) => setUser(res.data.data.user))
           .catch(() => localStorage.removeItem('mikalo_token'))
       : Promise.resolve()
     ).finally(() => setLoading(false))

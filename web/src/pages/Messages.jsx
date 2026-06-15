@@ -14,7 +14,7 @@ export default function Messages() {
 
   useEffect(() => {
     messageService.getConversations()
-      .then((res) => setConversations(res.data.data || []))
+      .then((res) => setConversations(res.data.data?.conversations || []))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])
@@ -25,7 +25,7 @@ export default function Messages() {
       setConversations((prev) => {
         const exists = prev.find((c) => c.id === data.conversationId)
         if (!exists) {
-          messageService.getConversations().then((res) => setConversations(res.data.data || []))
+          messageService.getConversations().then((res) => setConversations(res.data.data?.conversations || []))
           return prev
         }
         return prev.map((c) =>
@@ -43,7 +43,7 @@ export default function Messages() {
     const userId = searchParams.get('userId')
     if (!userId) return
     messageService.createConversation({ participantIds: [parseInt(userId)] })
-      .then((res) => { window.location.href = `/messages/${res.data.data.id}` })
+      .then((res) => { window.location.href = `/messages/${res.data.data.conversation.id}` })
       .catch((err) => console.error(err))
   }, [searchParams])
 

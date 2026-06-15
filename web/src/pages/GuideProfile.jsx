@@ -24,8 +24,8 @@ export default function GuideProfile() {
       reviewService.list({ targetType: 'guide', targetId: id, limit: 10 }),
     ])
       .then(([guideRes, reviewRes]) => {
-        setGuide(guideRes.data.data)
-        setReviews(reviewRes.data.data || [])
+        setGuide(guideRes.data.data.guide)
+        setReviews(reviewRes.data.data?.reviews || [])
       })
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger le profil'))
       .finally(() => setLoading(false))

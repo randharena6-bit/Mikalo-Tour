@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { AuthProvider } from './contexts/AuthContext'
 import { SocketProvider } from './contexts/SocketContext'
+import Header from './components/common/Header'
 import ProtectedRoute from './components/common/ProtectedRoute'
+import ErrorBoundary from './components/common/ErrorBoundary'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -27,8 +29,11 @@ import NotFound from './pages/NotFound'
 
 function AnimatedRoutes() {
   const location = useLocation()
+  const hideHeader = ['/login', '/register'].includes(location.pathname)
   return (
-    <AnimatePresence mode="wait">
+    <>
+      {!hideHeader && <Header />}
+      <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -58,11 +63,13 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <SocketProvider>
-          <AnimatedRoutes />
-        </SocketProvider>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <SocketProvider>
+            <AnimatedRoutes />
+          </SocketProvider>
+        </AuthProvider>
+      </ErrorBoundary>
     </BrowserRouter>
   )
 }

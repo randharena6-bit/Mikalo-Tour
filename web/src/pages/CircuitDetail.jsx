@@ -16,7 +16,7 @@ export default function CircuitDetail() {
 
   useEffect(() => {
     marketplaceService.getCircuit(id)
-      .then((res) => setCircuit(res.data.data))
+      .then((res) => setCircuit(res.data.data.circuit))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger le circuit'))
       .finally(() => setLoading(false))
   }, [id])

@@ -8,7 +8,7 @@ export default function DashboardAdmin() {
 
   useEffect(() => {
     dashboardService.admin()
-      .then((res) => setStats(res.data.data))
+      .then((res) => setStats(res.data.data?.stats))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])

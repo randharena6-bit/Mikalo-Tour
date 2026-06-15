@@ -16,7 +16,7 @@ export default function ActivityDetail() {
 
   useEffect(() => {
     marketplaceService.getActivity(id)
-      .then((res) => setActivity(res.data.data))
+      .then((res) => setActivity(res.data.data.activity))
       .catch((err) => setError(err.response?.data?.message || 'Impossible de charger l\'activité'))
       .finally(() => setLoading(false))
   }, [id])

@@ -20,7 +20,7 @@ export default function DashboardTourist() {
 
   useEffect(() => {
     bookingService.getMyBookings({ limit: 10 })
-      .then((res) => setBookings(res.data.data || []))
+      .then((res) => setBookings(res.data.data?.bookings || []))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])

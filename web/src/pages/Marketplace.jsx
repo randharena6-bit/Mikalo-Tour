@@ -30,7 +30,7 @@ export default function Marketplace() {
     }
 
     fetchers[activeTab]()
-      .then((res) => setData(res.data.data))
+      .then((res) => setData(res.data.data?.[activeTab] || []))
       .catch(() => setData([]))
       .finally(() => setLoading(false))
   }, [activeTab, search])

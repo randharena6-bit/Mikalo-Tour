@@ -23,7 +23,7 @@ export default function Conversation() {
       messageService.markAsRead(id),
     ])
       .then(([msgRes]) => {
-        setMessages(msgRes.data.data || [])
+        setMessages(msgRes.data.data?.messages || [])
       })
       .catch(() => {})
       .finally(() => setLoading(false))

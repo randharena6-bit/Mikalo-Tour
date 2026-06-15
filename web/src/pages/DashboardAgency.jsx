@@ -17,8 +17,8 @@ export default function DashboardAgency() {
       bookingService.getAgencyBookings({ limit: 10 }).catch(() => ({ data: { data: [] } })),
     ])
       .then(([statsRes, bookingsRes]) => {
-        setStats(statsRes?.data?.data)
-        setBookings(bookingsRes.data.data || [])
+        setStats(statsRes?.data?.data?.stats)
+        setBookings(bookingsRes.data.data?.bookings || [])
       })
       .finally(() => setLoading(false))
   }, [])
